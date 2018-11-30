@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder,Validator, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,17 @@ import { FormBuilder} from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  //This get userName() is used in app.component.html for making code cleaner
+  
+  get userName(){
+    return this.registrationForm.get('userName');
+  }
   title = 'reactive-form';
   constructor(private fb:FormBuilder){}
 
   registrationForm = this.fb.group({
-    userName:['Tabrez'],
+    userName:['',[Validators.required,Validators.minLength(3)]],
     password:[''],
     confirmPassword:[''],
     address:this.fb.group({
