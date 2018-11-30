@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validator, Validators, FormGroup} from '@angular/forms';
+import { FormBuilder,Validator, Validators, FormGroup, FormArray} from '@angular/forms';
 import { forbiddenNameValidator } from './shared/user-name.validator';
 import { PasswordValidator } from './shared/password.validator';
 
@@ -21,7 +21,12 @@ export class AppComponent implements OnInit {
   get email(){
     return this.registrationForm.get('email');
   }
- 
+ get alternateEmails(){
+   return this.registrationForm.get('alternateEmails') as FormArray;
+ }
+ addAlternateEmail(){
+   this.alternateEmails.push(this.fb.control(''));
+ }
 
   //This get userName() is used in app.component.html for making code cleaner
   ngOnInit(){
@@ -35,7 +40,8 @@ export class AppComponent implements OnInit {
         city:[''],
         state:[''],
         postalCode:['']
-      })
+      }),
+      alternateEmails:this.fb.array([])
     }
     ,
     {validator:PasswordValidator}
