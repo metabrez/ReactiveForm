@@ -19,4 +19,17 @@ export class AppComponent {
   }
   )
   });
+
+  loadApiData(){
+    this.registrationForm.setValue({
+      userName:'Tabrez',
+      password:'test',
+      confirmPassword:'test',
+      address:{
+        city:'city',
+        state:'state',
+        postalCode:'12345'
+      }
+    });
+  }
 }
