@@ -21,15 +21,15 @@ export class AppComponent {
   });
 
   loadApiData(){
-    this.registrationForm.setValue({
+    this.registrationForm.patchValue({
       userName:'Tabrez',
       password:'test',
       confirmPassword:'test',
-      address:{
+      /* address:{
         city:'city',
         state:'state',
         postalCode:'12345'
-      }
+      } */
     });
   }
 }
